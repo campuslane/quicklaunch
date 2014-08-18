@@ -25,7 +25,10 @@ class Parser {
 	public $fields = [];
 
 
-
+	/**
+	 * Constructor
+	 * @param [type] $input
+	 */
 	public function __construct($input)
 	{
 		// set the names
@@ -46,7 +49,10 @@ class Parser {
 	}
 
 
-
+	/**
+	 * Set Names
+	 * @param [Larvel Input] $input
+	 */
 	public function setNames($input)
 	{
 		$this->resource = strtolower(str_plural($input['resource_name']));
@@ -60,7 +66,10 @@ class Parser {
 	}
 
 
-
+	/**
+	 * Create Directories
+	 * @return [type]
+	 */
 	public function createDirectories()
 	{
 		if( $this->namespace ) {
@@ -82,6 +91,12 @@ class Parser {
 	}
 
 
+	/**
+	 * Parse Fields
+	 * @param  array $fieldNames
+	 * @param  array $fieldTypes
+	 * @return none
+	 */
 	public function parseFields($fieldNames, $fieldTypes)
 	{
 		foreach($fieldNames as $key=>$fieldName)
@@ -92,8 +107,15 @@ class Parser {
 				$this->fields[] = ['name'=>$fieldName, 'type'=>$fieldType];
 			}
 		}
+
+		return;
 	}
 
+
+	/**
+	 * Create Controller
+	 * @return boolean
+	 */
 	public function createController()
 	{
 	
@@ -111,7 +133,10 @@ class Parser {
 
 
 
-
+	/**
+	 * Create Model
+	 * @return [type]
+	 */
 	public function createModel()
 	{
 	
@@ -129,7 +154,10 @@ class Parser {
 
 
 
-
+	/**
+	 * Create Views
+	 * @return boolean
+	 */
 	public function createViews()
 	{
 		// go through the views array
@@ -155,11 +183,16 @@ class Parser {
 			// create the file
 			File::put($viewPath, $viewContent);
 		}
+
+		return true;
 	}
 
 
 
-
+	/**
+	 * Create Schema (the migration)
+	 * @return boolean
+	 */
 	public function createSchema()
 	{
 		// get the fields for the migration class
@@ -202,9 +235,13 @@ class Parser {
 		File::append(app_path(). '/routes.php', $controllerRoute);
 
 		return true;
-
 	}
 
+
+	/**
+	 * Get Collection Url
+	 * @return string
+	 */
 	public function getCollectionUrl()
 	{
 		return '/' . $this->collection;
@@ -213,7 +250,10 @@ class Parser {
 
 
 	/**
-	 * Parse the terms and replace the values
+	 * Parse Stub
+	 * @param  string $stub
+	 * @param  array $terms
+	 * @return string
 	 */
 	public function parseStub($stub, $terms)
 	{
@@ -227,18 +267,27 @@ class Parser {
 	}
 
 
-
+	/**
+	 * Parse Schema Fields
+	 * @param  string $stub
+	 * @param  array $field
+	 * @return string
+	 */
 	public function parseSchemaFields($stub, $field)
 	{
 		
 		$stub = str_replace('$TYPE$', $field['type'], $stub);
 		$stub = str_replace('$NAME$', $field['name'], $stub);
-		
 
 		return $stub;
 	}
 
 
+
+	/**
+	 * Get Main Field for Index List
+	 * @return [type]
+	 */
 	public function getMainField()
 	{
 		foreach($this->fields as $field)
@@ -250,6 +299,11 @@ class Parser {
 		}
 	}
 
+
+	/**
+	 * Get Form Fields Content
+	 * @return string
+	 */
 	public function getFormFieldsContent()
 	{
 		// initialize content
@@ -283,6 +337,11 @@ class Parser {
 	}
 
 
+
+	/**
+	 * Get Schema Fields Content
+	 * @return string
+	 */
 	public function getSchemaFieldsContent()
 	{
 		// setup the fields within migration file
@@ -300,6 +359,10 @@ class Parser {
 	}
 
 
+	/**
+	 * Create Migration File Name
+	 * @return string
+	 */
 	public function createMigrationFileName()
 	{
 		$migrationFileName = 'create_' . $this->collection . '_table';
@@ -310,7 +373,9 @@ class Parser {
 
 
 	/**
-	 * Create Directory 
+	 * Create Directory
+	 * @param  string $directory
+	 * @return string
 	 */
 	public function createDirectory($directory)
 	{
