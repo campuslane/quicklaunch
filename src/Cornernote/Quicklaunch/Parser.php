@@ -27,7 +27,7 @@ class Parser {
 
 	/**
 	 * Constructor
-	 * @param [type] $input
+	 * @param array $input
 	 */
 	public function __construct($input)
 	{
@@ -51,7 +51,7 @@ class Parser {
 
 	/**
 	 * Set Names
-	 * @param [Larvel Input] $input
+	 * @param array $input
 	 */
 	public function setNames($input)
 	{
