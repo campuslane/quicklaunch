@@ -1,0 +1,24 @@
+{
+    "name": "cornernote/quicklaunch",
+    "description": "",
+    "authors": [
+        {
+            "name": "Frank Matull",
+            "email": "frankm@campuslane.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*", 
+        "cornernote/themer": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Cornernote\\Quicklaunch\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

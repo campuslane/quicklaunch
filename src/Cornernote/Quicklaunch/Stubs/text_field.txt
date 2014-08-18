@@ -1,0 +1,6 @@
+<div class="form-group">
+	{{Form::label('$FIELDNAME$', '$FIELDLABEL$')}}
+	{{$errors->first('$FIELDNAME$', '<div class="alert alert-danger">:message</div>')}}
+	{{Form::text('$FIELDNAME$', Input::old('$FIELDNAME$', $$SINGLE$->$FIELDNAME$), ['class'=>'form-control'])}}
+</div>
+
