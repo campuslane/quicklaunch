@@ -1,1 +1,1 @@
-$table->$TYPE$('$NAME$');
+$table->$TYPE$('$NAME$')->nullable();
